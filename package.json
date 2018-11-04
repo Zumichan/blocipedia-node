@@ -1,0 +1,22 @@
+{
+  "name": "blocipedia",
+  "version": "1.0.0",
+  "description": "An application for creating, collaborating, and sharing wikis",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zumichan/blocipedia-node.git"
+  },
+  "keywords": [
+    "blocipedia"
+  ],
+  "author": "azumi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zumichan/blocipedia-node/issues"
+  },
+  "homepage": "https://github.com/Zumichan/blocipedia-node#readme"
+}
