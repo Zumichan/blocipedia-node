@@ -21,6 +21,7 @@ module.exports = {
         text: 'Thank you for signing up - start sharing your knowledge with other members in the community!',
         html: '<strong>Let the fun begin!</strong>',
       };
+      //console.log(msg); too see if the msg object looks good in the terminal
       sgMail.send(msg);
       callback(null, user);
     })

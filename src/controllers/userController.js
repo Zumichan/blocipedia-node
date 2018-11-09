@@ -18,6 +18,7 @@ module.exports = {
          res.redirect("/users/sign_up");
        } else {
          passport.authenticate("local")(req, res, () => {
+           //console.log("notice", "Welcome to Blocipedia! You've successfully signed up.");
            req.flash("notice", "Welcome to Blocipedia! You've successfully signed up.");
            res.redirect("/");
          })
