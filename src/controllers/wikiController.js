@@ -18,7 +18,7 @@ module.exports = {
       title: req.body.title,
       body: req.body.body,
       private: req.body.private,
-      //userId: req.user.id
+      userId: req.user.id
     };
     wikiQueries.addWiki(newWiki, (err, wiki) => {
       if(err){
@@ -56,11 +56,11 @@ module.exports = {
      });
    },
    update(req, res, next){
-     wikiQueries.updateWiki(req, req.body, (err, wiki) => {
+     wikiQueries.updateWiki(req.params.id, req.body, (err, wiki) => {
        if(err || wiki == null){
          res.redirect(404, `/wikis/${req.params.id}/edit`);
        } else {
-         res.redirect(`/wikis/${wiki.id}`);
+         res.redirect(`/wikis/${req.params.id}`);
        }
      });
    }
