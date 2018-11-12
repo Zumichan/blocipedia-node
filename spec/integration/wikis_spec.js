@@ -3,31 +3,66 @@ const server = require("../../src/server");
 const base = "http://localhost:3000/wikis/";
 const sequelize = require("../../src/db/models/index").sequelize;
 const Wiki = require("../../src/db/models").Wiki;
+const User = require("../../src/db/models").User;
 
 describe("routes : wikis", () => {
 
   beforeEach((done) => {
      this.wiki;
+     this.user;
+
      sequelize.sync({force: true}).then((res) => {
-
-      Wiki.create({
-        title: "Global Warming",
-        body: "Learn about the science of global warming"
-      })
-       .then((wiki) => {
-         this.wiki = wiki;
-         done();
+       User.create({
+         username: 'tommy',
+         email: "tommy@example.com",
+         password: "123456789"
        })
-       .catch((err) => {
-         console.log(err);
-         done();
-       });
+       .then((user)=>{
+         this.user = user;
 
+         Wiki.create({
+           title: "Global Warming",
+           body: "Learn about the science of global warming",
+           private: false,
+           userId: this.user.id
+         })
+          .then((wiki) => {
+            this.wiki = wiki;
+            done();
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+          });
+       })
      });
-
    });
 
-  describe("GET /wikis", () => {
+  describe("user performing CRUD actions for Wiki", () => {
+
+    beforeEach((done) => {
+      User.create({
+        username: "Mike",
+        email: "mike@example.com",
+        password: "123456789"
+      })
+      .then((user) => {
+        request.get({
+            url: "http://localhost:3000/auth/fake",
+            form: {
+              username: user.username,
+              userId: user.id,
+              email: user.email
+            }
+          },
+          (err, res, body) => {
+            done();
+          }
+        );
+      })
+    });
+
+    describe("GET /wikis", () => {
 
     it("should return a status code 200 and all wikis", (done) => {
          request.get(base, (err, res, body) => {
@@ -145,5 +180,6 @@ describe("routes : wikis", () => {
    });
  });
 
+})//End of test for user
 
-  });
+});
