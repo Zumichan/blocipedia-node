@@ -27,12 +27,12 @@ describe("routes : users", () => {
     });
   });//End of GET /users/sign_up
 
-  describe("POST /users", () => {
+  describe("POST /users/sign_up", () => {
 
     it("should create a new user with valid values and redirect", (done) => {
 
       const options = {
-        url: base,
+        url: base + "sign_up",
         form: {
           username: 'tommy',
           email: "tommy@example.com",
@@ -60,7 +60,7 @@ describe("routes : users", () => {
     it("should not create a new user with invalid attributes and redirect", (done) => {
       request.post(
         {
-          url: base,
+          url: base + "sign_up",
           form: {
             username: "notaname",
             email: "no",
@@ -81,7 +81,7 @@ describe("routes : users", () => {
       );
     });
 
-  });//End of POST /users
+  });//End of POST /users/sign_up
 
   describe("GET /users/sign_in", () => {
 
@@ -93,6 +93,5 @@ describe("routes : users", () => {
        });
      });
    });
-
 
 });

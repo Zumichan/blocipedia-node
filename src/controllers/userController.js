@@ -14,7 +14,7 @@ module.exports = {
      };
      userQueries.createUser(newUser, (err, user) => {
        if(err){
-         req.flash("error", err);
+         req.flash("notice", "Error: This email address is already registered.");
          res.redirect("/users/sign_up");
        } else {
          passport.authenticate("local")(req, res, () => {
@@ -31,7 +31,7 @@ module.exports = {
    signIn(req, res, next){
      passport.authenticate("local")(req, res, function () {
        if(!req.user){
-         req.flash("notice", "Sign in failed. Please try again.")
+         req.flash("notice", "Error: Sign in failed. Please try again.")
          res.redirect("/users/sign_in");
        } else {
          req.flash("notice", "You've successfully signed in!");
