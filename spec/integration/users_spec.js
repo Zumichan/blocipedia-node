@@ -81,7 +81,7 @@ describe("routes : users", () => {
       );
     });
 
-  });//End of POST /users
+  });//End of POST /users/sign_up
 
   describe("GET /users/sign_in", () => {
 
@@ -93,6 +93,5 @@ describe("routes : users", () => {
        });
      });
    });
-
 
 });
